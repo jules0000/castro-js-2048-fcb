@@ -1,0 +1,120 @@
+<!-- HTML is primarily used to create and structure the content of the website -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2048</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha384-rREHl6bz4Tq8avqTJb8qDLByV9CXnxUnED82RQJkFVFG9iZx9fpyFkStJSEdoGL+M" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" type="text/css" href="styles.css">
+
+    <meta property="og:title" content="I coded a game with Zuitt!" />
+    <meta property="og:description" content="This Game Development project is powered by Zuitt Coding Bootcamp" />
+    <meta property="og:site_name" content="I coded a game with Zuitt!" />
+    <meta property="og:image" content="[your-deployment-link]/images/story-thumbnail-2048.jpg" />
+    <meta property="og:image:secure_url" content="[your-deployment-link]" />
+</head>
+
+<body>
+    <audio id="backgroundMusic" autoplay loop>
+        <source src="bgmusic\instrumental.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+
+    <!-- To create html contents, we usually use paired tags and self-closing tags -->
+    <div class="container">
+        <!-- HTML offers six levels of headings, from `<h1>` (the biggest heading) to `<h6>` the smallest heading. -->
+        <h1>2048</h1>
+        <h2> Created by Jules </h2>
+
+        <hr id="top-line"> <!-- Fix the typo here -->
+
+        <div class="header-container">
+            <div class="score-container">
+                <div class="score-label">
+                    Score:
+                </div>
+                <div id="score"></div>
+            </div>
+
+            <div class="share-button-container">
+                <div class="share-label">
+                    Share:
+                </div>
+                <div class="share-icons">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=[https://www.facebook.com/its.juliacastro/]">
+                        <img src="./images/share_2048-fb.svg" alt="Share on Facebook">
+                    </a>
+
+                </div>
+            </div>
+            <!-- Toggle button for dark/light mode -->
+            <!-- Toggle button for dark/light mode -->
+            <!-- Toggle button for dark/light mode -->
+            <!-- Toggle button for dark/light mode -->
+            <button id="darkModeToggle" class="dark-mode-toggle" title="Toggle Dark Mode">
+                <i class="fas fa-sun"></i> <!-- Initially set as sun icon -->
+            </button>
+
+
+
+
+            <script type="text/javascript" src="logic.js"></script>
+            <script>
+                // Function to toggle dark mode
+                function toggleDarkMode() {
+                    const body = document.body;
+                    const isDarkMode = body.classList.toggle('dark-mode');
+
+                    // Save user preference to localStorage
+                    localStorage.setItem('darkMode', isDarkMode);
+
+                    // Update button icon based on dark mode state
+                    const darkModeToggle = document.getElementById('darkModeToggle');
+                    darkModeToggle.innerHTML = isDarkMode ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+                }
+
+                // Check user preference on page load
+                document.addEventListener('DOMContentLoaded', function () {
+                    const body = document.body;
+                    const darkModeToggle = document.getElementById('darkModeToggle');
+
+                    // Set initial dark mode based on user preference or system preference
+                    const userPreference = localStorage.getItem('darkMode');
+                    const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+                    const isDarkMode = userPreference === 'true' || (userPreference === null && prefersDarkMode);
+                    body.classList.toggle('dark-mode', isDarkMode);
+
+                    // Set initial button icon based on dark mode state
+                    darkModeToggle.innerHTML = isDarkMode ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+
+                    // Add event listener to the dark mode toggle button
+                    darkModeToggle.addEventListener('click', toggleDarkMode);
+                });
+
+
+
+            </script>
+
+
+
+        </div>
+
+        <!-- <div> tag are usually used as container to group contents -->
+        <!-- id attribute is to provide a unique identifier for styling and manipulation using CSS and JS -->
+        <!-- Trivia: In programming, our count usually starts at zero -->
+        <div id="board">
+            <!-- Your tile elements go here -->
+        </div>
+    </div>
+
+</body>
+
+</html>
